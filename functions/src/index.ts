@@ -1,8 +1,7 @@
 import * as functions from "firebase-functions"
 import * as express from 'express'
-import { addTaxiOrder, getAllOrders, getOrder, updateOrder } from "./controller/TaxiOrderController"
-import { addTaxiRide, getTaxiRide } from './controller/TaxiRideController'
-
+import {addTaxiOrder, getAllOrders, getOrder, updateOrder, deleteOrder} from "./controller/TaxiOrderController"
+import {addTaxiRide, getTaxiRide} from './controller/TaxiRideController'
 
 
 const app = express()
@@ -12,10 +11,10 @@ app.post('/orders', addTaxiOrder)
 app.get('/orders', getAllOrders)
 app.get('/orders/:orderId', getOrder)
 app.patch('/orders/:orderId', updateOrder)
+app.delete('orders/:orderId', deleteOrder)
 
 app.post('/rides', addTaxiRide)
 app.get('/rides/:rideId', getTaxiRide)
-
 
 
 exports.app = functions.https.onRequest(app)
